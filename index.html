@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Bistro | Portfolio & Projects</title>
+    <style>
+        /* ==========================================================================
+           1. CSS RESET & GLOBAL VARIABLES
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #e67e22;
+            /* Elegant restaurant orange */
+            --primary-dark: #d35400;
+            /* Darker orange for hovers */
+            --dark-color: #1a1a1a;
+            /* Deep dark gray for text/bg */
+            --light-bg: #f9f9f9;
+            /* Off-white background */
+            --white: #ffffff;
+            /* Pure white */
+            --text-muted: #666666;
+            /* Subdued gray text */
+            --transition: all 0.3s ease;
+            /* Standard transition timing */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==========================================================================
+           2. NAVIGATION BAR
+           ========================================================================== */
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        /* ==========================================================================
+           3. HERO BANNER
+           ========================================================================== */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://unsplash.com') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           4. PORTFOLIO / PROJECTS SECTION
+           ========================================================================== */
+        .portfolio-section {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.6rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Subtle underline decoration under section title */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Portfolio Grid with Flexbox */
+        .portfolio-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Portfolio Individual Card Item */
+        .portfolio-item {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            width: calc(33.333% - 20px);
+            /* Creates uniform 3-column rows */
+            min-width: 320px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Card Hover Floating Effect */
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Image Box Wrapper */
+        .portfolio-img-box {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .portfolio-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        /* Image Zoom Hover Effect */
+        .portfolio-item:hover .portfolio-img-box img {
+            transform: scale(1.1);
+        }
+
+        /* Text Content Inside Card */
+        .portfolio-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            /* Pushes content down evenly */
+        }
+
+        .category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--primary-color);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.4rem;
+            color: var(--dark-color);
+            margin-bottom: 12px;
+        }
+
+        .portfolio-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .project-link {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+            width: max-content;
+        }
+
+        .project-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* ==========================================================================
+           5. FOOTER
+           ========================================================================== */
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        /* ==========================================================================
+           6. RESPONSIVE DESIGN (MEDIA QUERIES)
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .portfolio-item {
+                width: calc(50% - 15px);
+                /* Switches to 2 columns on tablets */
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                /* Hides menu links on small mobile screens */
+            }
+
+            .section-title {
+                font-size: 2.1rem;
+            }
+
+            .portfolio-item {
+                width: 100%;
+                /* Switches to full width on mobile screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. Navigation Header -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Gourmet<span>Bistro</span></a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#portfolio" class="active">Our Projects</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section Banner -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Our Culinary Journey</h1>
+            <p>Crafting unforgettable dining experiences and community milestones.</p>
+            <a href="#portfolio" class="btn">Explore Work</a>
+        </div>
+    </section>
+
+    <!-- 3. Portfolio & Projects Section -->
